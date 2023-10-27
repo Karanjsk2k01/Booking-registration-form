@@ -5,13 +5,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    .container {
+    .column {
       display: flex;
+      flex-direction: column;
       justify-content: center;
       /* align-items: center; */
       text-align: center;
       min-height: 100vh;
+      margin: 0 auto;
       top: 10px;
+      width: 500px;
+      height: 200px;
       /* vh stands for viewport height */
     }
 
@@ -27,6 +31,9 @@
       flex-wrap: wrap;
       /* justify-content: space-around; */
       padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      overflow: auto;
 
     }
 
@@ -53,6 +60,24 @@
       text-align: start;
       margin: 10px;
     }
+
+    ul {
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      /* Box shadow style and color */
+      padding: 10px;
+      /* Padding around the list */
+      border-radius: 10px;
+      /* Rounded corners (optional) */
+      list-style-type: none;
+      margin: 5px 0;
+      font-size: 20px;
+      font-weight: bold;
+      word-wrap: break-word;
+    }
+
+    li {
+      word-wrap: break-word;
+    }
   </style>
   <title>Booking Appoinment Call</title>
 </head>
@@ -64,11 +89,13 @@
       <p>Book a slot and our representative will call you within 1hr of selected time</p>
       <form id="loginForm">
         <label for="Name:">Name</label>
-        <input type="text" name="Name" id="name">
+        <input type="text" name="Name" id="name" required>
         <label for="Email:">Email</label>
-        <input type="email" name="Email" id="email">
+        <input type="email" name="Email" id="email" required>
         <label for="Password:">Password</label>
-        <input type="text" name="Password" id="Password">
+        <input type="text" name="Password" id="Password" required>
+        <label for="Phone_number:">Phone Number</label>
+        <input type="tel" name="Phone_number" id="Phone_number" required>
         <label for="TimeForCall:">Time For Call</label>
         <div class="sub-column">
           <input type="date" id="timeForCall" name="TimeForCall">
@@ -83,12 +110,13 @@
         <input type="submit" value="Get a Call" class="submit">
 
       </form>
+      <ul id="items" class="li1">
+        <!-- <li>one
+        </li> -->
+      </ul>
 
     </div>
-    <!-- <ul id="items">
-      <li id="item">one</li>
-      <li id="item">two</li>
-    </ul> -->
+
 
   </div>
 
