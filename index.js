@@ -1,4 +1,6 @@
 let loginForm = document.getElementById("loginForm");
+let items = document.getElementById('items');
+
 
 loginForm.addEventListener("submit", (e) => {
 
@@ -33,21 +35,35 @@ loginForm.addEventListener("submit", (e) => {
 
   //storing the userdata in the page;
 
-  let endResult = [];
-  for (const key in localStorageValue) {
-    if (localStorageValue.hasOwnProperty(key)) {
-      const value = localStorageValue[key];
-      endResult.push(`${key}:${value}`)
-    }
-  }
-  let textToShow = endResult.join(',');
+  let textToShow = Object.values(localStorageValue)
 
   let liCreate = document.createElement('li');
+  let btn = document.createElement('button');
+  btn.textContent = 'Delete'
   let node = document.createTextNode(textToShow);
+  btn.setAttribute('class', 'btn');
   liCreate.appendChild(node);
+  liCreate.appendChild(btn)
   items.appendChild(liCreate)
 })
 
+items.addEventListener('click', deleteitem);
+
+function deleteitem(e) {
+  e.preventDefault();
+  if (e.target.classList.contains('btn')) {
+    if (confirm('Are you sure to delete ?')) {
+      let parentNode = e.target.parentNode;
+      let deleteElementLs = parentNode.innerText.split(',')[1]
+      items.removeChild(parentNode);
+      localStorage.removeItem(deleteElementLs);
+    }
+
+  }
+
+
+
+}
 // const ul = document.querySelector('#items');
 // const li = document.querySelector('#item');
 

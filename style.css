@@ -1,0 +1,103 @@
+/* .container {
+  display: flex;
+  width: 500px;
+  height: 200px;
+  margin: 0 auto;
+} */
+
+.column {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  /* align-items: center; */
+  text-align: center;
+  min-height: 100vh;
+  margin: 0 auto;
+  top: 10px;
+  width: 500px;
+  height: 200px;
+  /* vh stands for viewport height */
+  /* justify-content: space-between; */
+}
+
+.submit {
+  background-color: rgb(216, 63, 63);
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+.btn {
+  background-color: rgb(82, 19, 19);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 10px 15px;
+  margin-top: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* flex-wrap: wrap; */
+  /* justify-content: space-around; */
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  overflow: auto;
+
+}
+
+
+.sub-column {
+  display: flex;
+  width: 90%;
+  justify-content: space-between;
+
+}
+
+input,
+select {
+
+  border: 1px solid rgb(150, 150, 150);
+  padding: 10px;
+  margin: 10px;
+  align-items: center;
+  width: 90%;
+
+}
+
+label {
+  text-align: start;
+  margin: 10px;
+}
+
+ul {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  /* Box shadow style and color */
+  padding: 30px;
+  /* Padding around the list */
+  border-radius: 10px;
+  /* Rounded corners (optional) */
+  list-style-type: none;
+  margin: 5px 0;
+  font-size: 20px;
+  font-weight: bold;
+  word-wrap: break-word;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  text-align: start;
+}
+
+li {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  /* Box shadow style and color */
+  padding: 30px;
+  /* Padding around the list */
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}

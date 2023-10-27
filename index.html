@@ -4,116 +4,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    .column {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      /* align-items: center; */
-      text-align: center;
-      min-height: 100vh;
-      margin: 0 auto;
-      top: 10px;
-      width: 500px;
-      height: 200px;
-      /* vh stands for viewport height */
-    }
-
-    .submit {
-      background-color: rgb(216, 63, 63);
-      color: white;
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      flex-wrap: wrap;
-      /* justify-content: space-around; */
-      padding: 20px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-      border-radius: 10px;
-      overflow: auto;
-
-    }
-
-
-    .sub-column {
-      display: flex;
-      width: 90%;
-      justify-content: space-between;
-
-    }
-
-    input,
-    select {
-
-      border: 1px solid rgb(150, 150, 150);
-      padding: 10px;
-      margin: 10px;
-      align-items: center;
-      width: 90%;
-
-    }
-
-    label {
-      text-align: start;
-      margin: 10px;
-    }
-
-    ul {
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-      /* Box shadow style and color */
-      padding: 10px;
-      /* Padding around the list */
-      border-radius: 10px;
-      /* Rounded corners (optional) */
-      list-style-type: none;
-      margin: 5px 0;
-      font-size: 20px;
-      font-weight: bold;
-      word-wrap: break-word;
-    }
-
-    li {
-      word-wrap: break-word;
-    }
-  </style>
+  <link rel="stylesheet" href="./style.css">
   <title>Booking Appoinment Call</title>
 </head>
 
 <body>
   <div class="container">
     <div class="column">
-      <h1>Book a call</h1>
-      <p>Book a slot and our representative will call you within 1hr of selected time</p>
-      <form id="loginForm">
-        <label for="Name:">Name</label>
-        <input type="text" name="Name" id="name" required>
-        <label for="Email:">Email</label>
-        <input type="email" name="Email" id="email" required>
-        <label for="Password:">Password</label>
-        <input type="text" name="Password" id="Password" required>
-        <label for="Phone_number:">Phone Number</label>
-        <input type="tel" name="Phone_number" id="Phone_number" required>
-        <label for="TimeForCall:">Time For Call</label>
-        <div class="sub-column">
-          <input type="date" id="timeForCall" name="TimeForCall">
-          <select id="time" name="time" id="time">
-            <option value="select" selected>select</option>
-            <option value="11:30">11:30</option>
-            <option value="12:30">12:30</option>
-            <option value="01:30">01:30</option>
-            <option value="02:30">02:30</option>
-          </select>
-        </div>
-        <input type="submit" value="Get a Call" class="submit">
+      <div>
+        <h1>Book a call</h1>
+        <p>Book a slot and our representative will call you within 1hr of selected time</p>
+        <form id="loginForm">
+          <label for="Name:">Name</label>
+          <input type="text" name="Name" id="name" required>
+          <label for="Email:">Email</label>
+          <input type="email" name="Email" id="email" required>
+          <label for="Password:">Password</label>
+          <input type="text" name="Password" id="Password" required>
+          <label for="Phone_number:">Phone Number</label>
+          <input type="tel" name="Phone_number" id="Phone_number" required>
+          <label for="TimeForCall:">Time For Call</label>
+          <div class="sub-column">
+            <input type="date" id="timeForCall" name="TimeForCall">
+            <select id="time" name="time" id="time">
+              <option value="select" selected>select</option>
+              <option value="11:30">11:30</option>
+              <option value="12:30">12:30</option>
+              <option value="01:30">01:30</option>
+              <option value="02:30">02:30</option>
+            </select>
+          </div>
+          <input type="submit" value="Get a Call" class="submit">
 
-      </form>
-      <ul id="items" class="li1">
-        <!-- <li>one
+        </form>
+      </div>
+      <ul id="items" class="list-items">
+        <!-- <li class="list-items">
+          name:karan,email:karanvarun14501@gmail.com,Password:karan@2k01,PhoneNumber:9443814436,timeForCall:2023-10-28,time:12:30
+          <button class="btn">Delete</button>
         </li> -->
       </ul>
+
 
     </div>
 
