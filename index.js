@@ -10,15 +10,26 @@ loginForm.addEventListener("submit", (e) => {
   let timeForCall = document.getElementById("timeForCall");
   let time = document.getElementById("time");
 
-  console.log(`${name.value}, ${email.value}, ${Password.value}, ${timeForCall.value}, ${time.value}`);
+  // console.log(`${name.value}, ${email.value}, ${Password.value}, ${timeForCall.value}, ${time.value}`);
 
   //local storage setting item
-  localStorage.setItem('name', `${name.value}`);
-  localStorage.setItem('email', `${email.value}`);
-  localStorage.setItem('Password', `${Password.value}`);
-  localStorage.setItem('timeForCall', `${timeForCall.value}`);
-  localStorage.setItem('time', `${time.value}`);
+  // localStorage.setItem('name', `${name.value}`);
+  // localStorage.setItem('email', `${email.value}`);
+  // localStorage.setItem('Password', `${Password.value}`);
+  // localStorage.setItem('timeForCall', `${timeForCall.value}`);
+  // localStorage.setItem('time', `${time.value}`);
 
+  //storing the user data in the format of objects
+  let myObj = {
+    'name': `${name.value}`,
+    'email': `${email.value}`,
+    'Password': `${Password.value}`,
+    'timeForCall': `${timeForCall.value}`,
+    'time': `${time.value}`,
+  }
+
+  localStorage.setItem(`${name.value}`, JSON.stringify(myObj))
+  console.log(JSON.parse(localStorage.getItem('karan')));
 
   name.value = ''
   email.value = ''
