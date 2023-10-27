@@ -38,12 +38,17 @@ loginForm.addEventListener("submit", (e) => {
   let textToShow = Object.values(localStorageValue)
 
   let liCreate = document.createElement('li');
-  let btn = document.createElement('button');
-  btn.textContent = 'Delete'
+  //creating two buttons
+  let btn1 = document.createElement('button');
+  let btn2 = document.createElement('button');
+  btn1.textContent = 'Delete';
+  btn2.textContent = 'Edit';
   let node = document.createTextNode(textToShow);
-  btn.setAttribute('class', 'btn');
+  btn1.setAttribute('class', 'btn');
+  btn2.setAttribute('class', 'btn1');
   liCreate.appendChild(node);
-  liCreate.appendChild(btn)
+  liCreate.appendChild(btn1);
+  liCreate.appendChild(btn2);
   items.appendChild(liCreate)
 })
 
@@ -64,21 +69,32 @@ function deleteitem(e) {
 
 
 }
-// const ul = document.querySelector('#items');
-// const li = document.querySelector('#item');
+//edit functionality
 
-// li.innerText = 'Hello';
-// li.style.background = 'LightGreen';
-// ul.lastElementChild.innerHTML = '<h2>Hello</h2>'
-// ul.children[1].style.background = 'yellow'
-//practising cookies
+items.addEventListener('click', editBtn);
 
-// document.cookie = 'name:karan;expires=' + new Date(2024, 0, 1).toUTCString();
-// console.log(`${name.value}, ${email.value}, ${Password.value}, ${timeForCall.value}, ${time.value}`);
+function editBtn(e) {
+  e.preventDefault();
+  if (e.target.classList.contains('btn1')) {
+    if (confirm('Are you sure to Edit ?')) {
+      //deleting and taking the value to input box
+      let parentNode = e.target.parentNode;
+      let deleteElementLs = parentNode.innerText.split(',')[1];
+      let fullDataArray = parentNode.innerText.split(',')
+      items.removeChild(parentNode);
+      localStorage.removeItem(deleteElementLs);
+      //setting the values to input box
+      document.getElementById("name").value = fullDataArray[0];
+      document.getElementById("email").value = fullDataArray[1];
+      document.getElementById("Password").value = fullDataArray[2];
+      document.getElementById('Phone_number').value = fullDataArray[3];
+      document.getElementById("timeForCall").value = fullDataArray[4];
+      document.getElementById("time").value = fullDataArray[5];
+      document.getElementById('items').value = fullDataArray[6];
+    }
 
-//local storage setting item
-// localStorage.setItem('name', `${name.value}`);
-// localStorage.setItem('email', `${email.value}`);
-// localStorage.setItem('Password', `${Password.value}`);
-// localStorage.setItem('timeForCall', `${timeForCall.value}`);
-// localStorage.setItem('time', `${time.value}`);
+  }
+  //after clicking should delete the item from ls and list
+  //add the user items to the input box;
+
+}

@@ -36,6 +36,15 @@
   margin-top: 20px;
 }
 
+.btn1 {
+  background-color: rgb(240, 11, 11);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 10px 15px;
+  margin-top: 20px;
+}
+
 form {
   display: flex;
   flex-direction: column;
