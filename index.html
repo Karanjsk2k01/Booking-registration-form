@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    .container {
+      display: flex;
+      justify-content: center;
+      /* align-items: center; */
+      text-align: center;
+      min-height: 100vh;
+      top: 10px;
+      /* vh stands for viewport height */
+    }
+
+    .submit {
+      background-color: rgb(216, 63, 63);
+      color: white;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-wrap: wrap;
+      /* justify-content: space-around; */
+      padding: 20px;
+
+    }
+
+
+    .sub-column {
+      display: flex;
+      width: 90%;
+      justify-content: space-between;
+
+    }
+
+    input,
+    select {
+
+      border: 1px solid rgb(150, 150, 150);
+      padding: 10px;
+      margin: 10px;
+      align-items: center;
+      width: 90%;
+
+    }
+
+    label {
+      text-align: start;
+      margin: 10px;
+    }
+  </style>
+  <title>YAV</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="column">
+      <h1>Book a call</h1>
+      <p>Book a slot and our representative will call you within 1hr of selected time</p>
+      <form id="loginForm">
+        <label for="Name:">Name</label>
+        <input type="text" name="Name" id="name">
+        <label for="Email:">Email</label>
+        <input type="email" name="Email" id="email">
+        <label for="Password:">Password</label>
+        <input type="text" name="Password" id="Password">
+        <label for="TimeForCall:">Time For Call</label>
+        <div class="sub-column">
+          <input type="date" id="timeForCall" name="TimeForCall">
+          <select id="time" name="time" id="time">
+            <option value="select" selected>select</option>
+            <option value="11:30">11:30</option>
+            <option value="12:30">12:30</option>
+            <option value="01:30">01:30</option>
+            <option value="02:30">02:30</option>
+          </select>
+        </div>
+        <input type="submit" value="Get a Call" class="submit">
+
+      </form>
+
+    </div>
+    <!-- <ul id="items">
+      <li id="item">one</li>
+      <li id="item">two</li>
+    </ul> -->
+
+  </div>
+
+  <script src="index.js">
+  </script>
+
+</body>
+
+</html>
