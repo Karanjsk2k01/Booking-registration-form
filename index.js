@@ -57,12 +57,13 @@ function displayUserDetails(userObj) {
   let liCreate = document.createElement('li');
 
   // Create text nodes for each property
-  let nameNode = document.createTextNode(`Name: ${userObj.myObj.name}`);
-  let emailNode = document.createTextNode(`Email: ${userObj.myObj.email}`);
-  let passwordNode = document.createTextNode(`Password: ${userObj.myObj.Password}`);
-  let phoneNumberNode = document.createTextNode(`Phone Number: ${userObj.myObj.PhoneNumber}`);
-  let timeForCallNode = document.createTextNode(`Time for Call: ${userObj.myObj.timeForCall}`);
-  let timeNode = document.createTextNode(`Time: ${userObj.myObj.time}`);
+  // let nameNode = document.createTextNode(`Name: ${userObj.myObj.name}`);
+  // let emailNode = document.createTextNode(`Email: ${userObj.myObj.email}`);
+  // let passwordNode = document.createTextNode(`Password: ${userObj.myObj.Password}`);
+  // let phoneNumberNode = document.createTextNode(`Phone Number: ${userObj.myObj.PhoneNumber}`);
+  // let timeForCallNode = document.createTextNode(`Time for Call: ${userObj.myObj.timeForCall}`);
+  // let timeNode = document.createTextNode(`Time: ${userObj.myObj.time}`);
+  let textNode = document.createTextNode(Object.values(userObj.myObj));
 
   // Create buttons
   let btn1 = document.createElement('button');
@@ -73,12 +74,13 @@ function displayUserDetails(userObj) {
   btn2.setAttribute('class', 'btn1');
 
   // Append text nodes and buttons to the list item
-  liCreate.appendChild(nameNode);
-  liCreate.appendChild(emailNode);
-  liCreate.appendChild(passwordNode);
-  liCreate.appendChild(phoneNumberNode);
-  liCreate.appendChild(timeForCallNode);
-  liCreate.appendChild(timeNode);
+  // liCreate.appendChild(nameNode);
+  // liCreate.appendChild(emailNode);
+  // liCreate.appendChild(passwordNode);
+  // liCreate.appendChild(phoneNumberNode);
+  // liCreate.appendChild(timeForCallNode);
+  // liCreate.appendChild(timeNode);
+  liCreate.appendChild(textNode);
   liCreate.appendChild(btn1);
   liCreate.appendChild(btn2);
 
@@ -89,6 +91,7 @@ function displayUserDetails(userObj) {
   items.appendChild(liCreate);
 }
 
+items.addEventListener('click', deleteItem)
 
 function deleteItem(e) {
   e.preventDefault();
@@ -110,4 +113,44 @@ function deleteItem(e) {
 
 }
 
-items.addEventListener('click', deleteItem)
+items.addEventListener('click', editItem)
+
+function editItem(e) {
+  if (e.target.classList.contains('btn1')) {
+    if (confirm('Are you sure to edit?')) {
+      let parentNode = e.target.parentNode;
+      let userId = parentNode.getAttribute('user_id');
+      let fullDataArray = parentNode.innerText.split(',');
+
+      document.getElementById("name").value = fullDataArray[0];
+      document.getElementById("email").value = fullDataArray[1];
+      document.getElementById("Password").value = fullDataArray[2];
+      document.getElementById('Phone_number').value = fullDataArray[3];
+      document.getElementById("timeForCall").value = fullDataArray[4];
+      document.getElementById("time").value = fullDataArray[5];
+
+      // Remove the old list item from the UI
+      parentNode.remove();
+
+      // Add an event listener to the form for updating the data
+      loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        // Get the updated values from the form
+        let updatedName = document.getElementById("name").value;
+        let updatedEmail = document.getElementById("email").value;
+        let updatedPassword = document.getElementById("Password").value;
+        let updatedPhoneNumber = document.getElementById('Phone_number').value;
+        let updatedTimeForCall = document.getElementById("timeForCall").value;
+        let updatedTime = document.getElementById("time").value;
+
+        axios.delete(`https://crudcrud.com/api/4ee03b6da75642dc9b2dd4a5c397cd6a/userdetails/${userId}`)
+          .then((deleteRes) => {
+            // Remove the list item from the UI on successful deletion
+            parentNode.remove()
+          })
+          .catch(err => console.log(err));
+      });
+    }
+  }
+}
