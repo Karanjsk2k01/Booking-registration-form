@@ -1,10 +1,17 @@
-let loginForm = document.getElementById("loginForm");
 let items = document.getElementById('items');
+let loginForm = document.getElementById('loginForm');
 
+// Fetch existing user data from the API when the page loads
+axios.get('https://crudcrud.com/api/4ee03b6da75642dc9b2dd4a5c397cd6a/userdetails')
+  .then((getRes) => {
+    const userDataArray = getRes.data;
+    // Display existing user data in the user interface
+    userDataArray.forEach(userObj => displayUserDetails(userObj.myObj));
+  })
+  .catch(err => console.log(err));
 
-loginForm.addEventListener("submit", (e) => {
-
-  e.preventDefault()
+loginForm.addEventListener('submit', (e) => {
+  e.preventDefault();
 
   let name = document.getElementById("name");
   let email = document.getElementById("email");
@@ -12,89 +19,64 @@ loginForm.addEventListener("submit", (e) => {
   let phoneNumber = document.getElementById('Phone_number');
   let timeForCall = document.getElementById("timeForCall");
   let time = document.getElementById("time");
-  let items = document.getElementById('items');
 
-  //storing the user data in the format of objects
+  // Storing the user data in the format of objects
   let myObj = {
-    'name': `${name.value}`,
-    'email': `${email.value}`,
-    'Password': `${Password.value}`,
-    'PhoneNumber': `${phoneNumber.value}`,
-    'timeForCall': `${timeForCall.value}`,
-    'time': `${time.value}`,
-  }
+    'name': name.value,
+    'email': email.value,
+    'Password': Password.value,
+    'PhoneNumber': phoneNumber.value,
+    'timeForCall': timeForCall.value,
+    'time': time.value,
+  };
 
-  localStorage.setItem(`${email.value}`, JSON.stringify(myObj))
-  let localStorageValue = JSON.parse(localStorage.getItem(`${email.value}`));
-  name.value = ''
-  email.value = ''
-  Password.value = ''
-  phoneNumber.value = ''
-  timeForCall.value = ''
-  time.value = ''
+  // Posting new user data to the API
+  axios.post('https://crudcrud.com/api/4ee03b6da75642dc9b2dd4a5c397cd6a/userdetails', { myObj })
+    .then((res) => {
+      // Display the new user data in the user interface
+      console.log(res);
+    })
+    .catch(err => console.log(err));
 
-  //storing the userdata in the page;
+  // Reset form values
+  name.value = '';
+  email.value = '';
+  Password.value = '';
+  phoneNumber.value = '';
+  timeForCall.value = '';
+  time.value = '';
+});
 
-  let textToShow = Object.values(localStorageValue)
-
+function displayUserDetails(userObj) {
+  // Create a list item
   let liCreate = document.createElement('li');
-  //creating two buttons
+
+  // Create text nodes for each property
+  let nameNode = document.createTextNode(`Name: ${userObj.name}`);
+  let emailNode = document.createTextNode(`Email: ${userObj.email}`);
+  let passwordNode = document.createTextNode(`Password: ${userObj.Password}`);
+  let phoneNumberNode = document.createTextNode(`Phone Number: ${userObj.PhoneNumber}`);
+  let timeForCallNode = document.createTextNode(`Time for Call: ${userObj.timeForCall}`);
+  let timeNode = document.createTextNode(`Time: ${userObj.time}`);
+
+  // Create buttons
   let btn1 = document.createElement('button');
   let btn2 = document.createElement('button');
   btn1.textContent = 'Delete';
   btn2.textContent = 'Edit';
-  let node = document.createTextNode(textToShow);
   btn1.setAttribute('class', 'btn');
   btn2.setAttribute('class', 'btn1');
-  liCreate.appendChild(node);
+
+  // Append text nodes and buttons to the list item
+  liCreate.appendChild(nameNode);
+  liCreate.appendChild(emailNode);
+  liCreate.appendChild(passwordNode);
+  liCreate.appendChild(phoneNumberNode);
+  liCreate.appendChild(timeForCallNode);
+  liCreate.appendChild(timeNode);
   liCreate.appendChild(btn1);
   liCreate.appendChild(btn2);
-  items.appendChild(liCreate)
-})
 
-items.addEventListener('click', deleteitem);
-
-function deleteitem(e) {
-  e.preventDefault();
-  if (e.target.classList.contains('btn')) {
-    if (confirm('Are you sure to delete ?')) {
-      let parentNode = e.target.parentNode;
-      let deleteElementLs = parentNode.innerText.split(',')[1]
-      items.removeChild(parentNode);
-      localStorage.removeItem(deleteElementLs);
-    }
-
-  }
-
-
-
-}
-//edit functionality
-
-items.addEventListener('click', editBtn);
-
-function editBtn(e) {
-  e.preventDefault();
-  if (e.target.classList.contains('btn1')) {
-    if (confirm('Are you sure to Edit ?')) {
-      //deleting and taking the value to input box
-      let parentNode = e.target.parentNode;
-      let deleteElementLs = parentNode.innerText.split(',')[1];
-      let fullDataArray = parentNode.innerText.split(',')
-      items.removeChild(parentNode);
-      localStorage.removeItem(deleteElementLs);
-      //setting the values to input box
-      document.getElementById("name").value = fullDataArray[0];
-      document.getElementById("email").value = fullDataArray[1];
-      document.getElementById("Password").value = fullDataArray[2];
-      document.getElementById('Phone_number').value = fullDataArray[3];
-      document.getElementById("timeForCall").value = fullDataArray[4];
-      document.getElementById("time").value = fullDataArray[5];
-      document.getElementById('items').value = fullDataArray[6];
-    }
-
-  }
-  //after clicking should delete the item from ls and list
-  //add the user items to the input box;
-
+  // Appending the list item to the items element (assuming items is a valid element)
+  items.appendChild(liCreate);
 }
