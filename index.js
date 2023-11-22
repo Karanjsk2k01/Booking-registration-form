@@ -2,13 +2,17 @@ let items = document.getElementById('items');
 let loginForm = document.getElementById('loginForm');
 
 // Fetch existing user data from the API when the page loads
-axios.get('https://crudcrud.com/api/4ee03b6da75642dc9b2dd4a5c397cd6a/userdetails')
-  .then((getRes) => {
-    const userDataArray = getRes.data;
-    // Display existing user data in the user interface
-    userDataArray.forEach(userObj => displayUserDetails(userObj.myObj));
-  })
-  .catch(err => console.log(err));
+window.addEventListener('DOMContentLoaded', () => {
+
+  axios.get('https://crudcrud.com/api/4ee03b6da75642dc9b2dd4a5c397cd6a/userdetails')
+    .then((getRes) => {
+      const userDataArray = getRes.data;
+      // Display existing user data in the user interface
+      userDataArray.forEach(userObj => displayUserDetails(userObj.myObj));
+    })
+    .catch(err => console.log(err));
+
+})
 
 loginForm.addEventListener('submit', (e) => {
   e.preventDefault();
